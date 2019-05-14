@@ -55,21 +55,32 @@ chrome.storage.onChanged.addListener(function({ blacklist: storageBlacklist }) {
 chrome.browserAction.onClicked.addListener(function(tab) {
   try {
     const url = new URL(tab.url);
-    const origin = url.origin;
-    chrome.storage.local.get({ blacklist: [] }, function({
-      blacklist: storageBlacklist
-    }) {
-      let blacklist = [...storageBlacklist];
-      if (blacklist.includes(origin)) {
-        blacklist = blacklist.filter(
-          blacklistedOrigin => blacklistedOrigin !== origin
-        );
-      } else {
-        blacklist.push(origin);
+    const { hostname, origin } = url;
+    chrome.permissions.request(
+      {
+        origins: [`*://*.${hostname}/*`]
+      },
+      function(granted) {
+        if (!granted) {
+          alert("Permission not granted");
+        } else {
+          chrome.storage.local.get({ blacklist: [] }, function({
+            blacklist: storageBlacklist
+          }) {
+            let blacklist = [...storageBlacklist];
+            if (blacklist.includes(origin)) {
+              blacklist = blacklist.filter(
+                blacklistedOrigin => blacklistedOrigin !== origin
+              );
+            } else {
+              blacklist.push(origin);
+            }
+            blacklist.sort();
+            chrome.storage.local.set({ blacklist });
+          });
+        }
       }
-      blacklist.sort();
-      chrome.storage.local.set({ blacklist });
-    });
+    );
   } catch (error) {
     console.error(error);
   }
