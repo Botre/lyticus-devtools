@@ -9,6 +9,7 @@
     "devtools",
     "lyticus"
   ],
+  "private": true,
   "homepage": "https://github.com/Botre/lyticus-devtools#readme",
   "repository": {
     "type": "git",
