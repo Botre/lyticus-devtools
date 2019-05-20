@@ -27,12 +27,12 @@ function render() {
       } else {
         const eventsContainer = document.createElement("div");
         events.forEach(function(event) {
-          const { time, propertyId, development, type, ...rest } = event;
+          const { time, websiteId, development, type, ...rest } = event;
           const eventElement = document.createElement("div");
           eventElement.innerHTML += `<div>${format(
             new Date(time),
             "HH:mm:ss"
-          )} - ${propertyId} - ${type}</div>`;
+          )} - ${websiteId} - ${type}</div>`;
           eventElement.innerHTML += `<div><pre>${JSON.stringify(
             rest
           )}</pre></div>`;
