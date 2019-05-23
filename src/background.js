@@ -132,6 +132,7 @@ chrome.runtime.onMessage.addListener(function(request) {
 
 chrome.webRequest.onBeforeRequest.addListener(
   function(details) {
+    console.log(details)
     try {
       const { initiator, method } = details;
       const url = new URL(initiator);
@@ -139,6 +140,7 @@ chrome.webRequest.onBeforeRequest.addListener(
       if (method === "OPTIONS") {
         return { cancel: false };
       }
+      console.log(blacklist)
       return { cancel: blacklist.includes(origin) };
     } catch (error) {
       console.error(error);

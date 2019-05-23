@@ -16,6 +16,7 @@
     }
   },
   "permissions": [
+    "*://beacon.lyticus.com/*",
     "activeTab",
     "declarativeContent",
     "storage",
