@@ -18,7 +18,6 @@
   "permissions": [
     "*://beacon.lyticus.com/*",
     "activeTab",
-    "cookies",
     "declarativeContent",
     "storage",
     "tabs",
