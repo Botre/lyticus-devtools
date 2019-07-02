@@ -1,7 +1,8 @@
 {
   "name": "lyticus-devtools",
-  "version": "1.0.0",
   "description": "Browser devtools extension for Lyticus",
+  "private": false,
+  "version": "1.0.0",
   "author": "Bjorn Krols (https://byteboomers.com)",
   "license": "MIT",
   "keywords": [
@@ -9,7 +10,6 @@
     "devtools",
     "lyticus"
   ],
-  "private": true,
   "homepage": "https://github.com/Botre/lyticus-devtools#readme",
   "repository": {
     "type": "git",
